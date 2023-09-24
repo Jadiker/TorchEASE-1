@@ -77,8 +77,8 @@ class TorchEASE:
 
         self.logger.info("Building B matrix")
         B = P / (-1 * P.diag())
-        # Set diagonals to 0. TODO: Use .fill_diag_
-        B = B + torch.eye(B.shape[0])
+        # Set diagonals to 0
+        B.fill_diagonal_(0)
 
         # Predictions for user `_u` will be self.sparse.to_dense()[_u]@self.B
         self.B = B
